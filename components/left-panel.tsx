@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { useSession } from "next-auth/react";
 import { signOut } from "next-auth/react";
+import DateTime from "@/components/common/DateTime";
 
 
 export default function LeftPanel() {
@@ -111,7 +112,7 @@ export default function LeftPanel() {
                 </div>
 
                 {/* Date Display */}
-                <p className="text-white text-xs lg:text-sm">November 6, 2024</p>
+                <DateTime />
 
                 {/* Navigation Buttons */}
                 <div className="space-y-2 w-full flex-grow">

@@ -4,6 +4,9 @@ import MonthExpenseHistory from "@/components/monthExpenseHistory";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 import { authOptions } from "@/lib/auth";
+import User from "@/models/user";
+
+
 
 export default async function Expenses() {
     const session = await getServerSession(authOptions);
@@ -11,6 +14,9 @@ export default async function Expenses() {
     if (!session) {
       redirect("/login");
     }
+    
+
+
 
   const Icon1 = () => {
     return (

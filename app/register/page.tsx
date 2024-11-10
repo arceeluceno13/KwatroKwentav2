@@ -1,25 +1,33 @@
 "use client";
 
-import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import  { useRouter } from "next/navigation";
+import { useSession } from "next-auth/react";
 import { DivideIcon } from "@heroicons/react/16/solid";
+
+
 
 
 export default function Register() {
 
-    const [name, setName] = useState("");
+    const [username, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
-
     const  router = useRouter();
+    const { data: session } = useSession();
+
+    useEffect(() => {
+        if (session) {
+            router.replace("/expenses");
+        }
+    }, [session, router]);
 
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
-        if (!name || !email || !password) {
+        if (!username || !email || !password) {
             setError("All fields are necessary.");
             return;
         }
@@ -47,7 +55,7 @@ export default function Register() {
                     "Content-Type": 'application/json'
                 },
             body: JSON.stringify({
-                name, email, password
+                username, email, password
             })
         });
 
@@ -65,7 +73,7 @@ export default function Register() {
         }
     };
 
-    console.log("Name: ", name);
+    console.log("Username: ", username);
 
     return (
         <div className="flex flex-col md:flex-row h-screen">

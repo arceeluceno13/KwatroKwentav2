@@ -8,6 +8,7 @@ export default function expenseHistory() {
             </>
             );
         }
+        
     
     const Icon2 = () => {
         return (
